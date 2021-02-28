@@ -1,0 +1,30 @@
+service: aws-node-twilio
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+    # replace these env variables with your twilio account values
+    # TWILIO_ACCOUNT_SID: YOUR-TWILIO-ACCOUNT-SID-HERE
+    # TWILIO_AUTH_TOKEN: YOUR-TWILIO-AUTH-TOKEN-HERE
+    # TWILIO_PHONE_NUMBER: YOUR-TWILIO-PHONE-NUMBER-HERE
+    TWILIO_ACCOUNT_SID: AC385ce9af353e5110b94b40bac75291f0
+    TWILIO_AUTH_TOKEN: 546e8b0b705a64f530be7d156a5c050d
+    TWILIO_PHONE_NUMBER: +15087795065
+
+package:
+  exclude:
+    - "*.test.js"
+    - 'node_modules/**'
+    - '!node_modules/twilio/**'
+    - 'frontend/**'
+
+functions:
+  sendText:
+    handler: handler.sendText
+    events:
+      - http:
+          path: api/sendText
+          method: post
+          integration: lambda
+          cors: true
