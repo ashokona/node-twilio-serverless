@@ -1,24 +1,3 @@
-<!--
-title: 'AWS Send SMS Message with Twilio example in NodeJS'
-description: 'This example demonstrates how to send SMS messages with the Twilio SDK and AWS lambda.'
-layout: Doc
-framework: v1
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/darrenhgc'
-authorName: 'Darren Holland'
-authorAvatar: 'https://avatars0.githubusercontent.com/u/28113106?v=4&s=140'
--->
-# Send SMS Message with Twilio
-
-<img align="right" width="316" height="103" src="https://s3-us-west-2.amazonaws.com/assets.site.serverless.com/blog/twilio-logo.jpg">
-This example demonstrates how to send SMS messages with the Twilio SDK and AWS lambda.
-
-[Live the live demo](http://twilio-serverless-example.surge.sh)
-
-## Use Cases:
-
-* Sending users confirmation text messages
 
 ## Setup
 
@@ -38,20 +17,15 @@ This example demonstrates how to send SMS messages with the Twilio SDK and AWS l
     TWILIO_PHONE_NUMBER: YOUR-TWILIO-PHONE-NUMBER-HERE
   ```
 
-  If you want to use encrypted API keys, see our [encrypted environment variables example](https://github.com/serverless/examples/tree/master/aws-node-env-variables-encrypted-in-a-file)
-
-5. Invoke the function and send an SMS message
+5. Deploy and Invoke the function and send an SMS message
 
   Update the `to` phone number the `event.json` file and `message` to send in the SMS
 
   Then invoke the function with the serverless CLI. Set the `--path event.json` so the function knows where to send the SMS.
 
+  You need to install and configure aws-cli in order to deploy
+
   ```bash
+  serverless deploy
   serverless invoke -f sendText --path event.json
   ```
-
-6. (Optional) Deploy the front-end application
-
-  Update the `API_ENDPOINT` variable in the `/frontend/index.html` file and deploy the `/frontend` folder to a static host of your choice.
-
-  We recommend S3, [netlify](https://www.netlify.com/), or [surge.sh](http://surge.sh/) for quick and easy static site hosting.
